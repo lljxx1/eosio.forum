@@ -130,6 +130,7 @@ class forum : public eosio::contract {
             std::string    proposal_json;
 
             auto primary_key()const { return proposal_name.value; }
+            EOSLIB_SERIALIZE(proposal, (proposal_name)(title)(proposal_json))
         };
         typedef eosio::multi_index<N(proposal),proposal> proposals;
 
@@ -139,6 +140,7 @@ class forum : public eosio::contract {
             time           updated_at;
 
             auto primary_key() const { return account; }
+            EOSLIB_SERIALIZE(statusrow, (account)(content)(updated_at))
         };
         typedef eosio::multi_index<N(status),statusrow> statuses;
 
